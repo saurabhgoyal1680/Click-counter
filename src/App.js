@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './Header'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state ={
+      numVal: 0
+    }
+  }
+
+  plusOne(){
+    var numVal = this.state.numVal + 1;
+    this.setState({numVal});
+  }
+
+  minusOne(){
+    var numVal = this.state.numVal - 1;
+    this.setState({numVal});
+  }
+
+  reset(){
+    this.setState({
+      numVal:0
+    });
+  }
+
+  render(){
+    return (
+      <div className="mainDiv">
+        <Header />
+        <div className="counter">
+          <div className="numBox">
+            {this.state.numVal}
+          </div>
+          <div className="btn-holder">
+            <button onClick={() => this.plusOne()}>+</button>
+            <button onClick={() => this.reset()}>@</button>
+            <button onClick={() => this.minusOne()}>-</button>
+          </div>
+            
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
